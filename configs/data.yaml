@@ -1,0 +1,36 @@
+raw_dir: data/raw
+processed_dir: data/processed
+splits_dir: data/splits
+tables_dir: results/tables
+
+# The real patient workbook used in the study is not included in this public
+# repository. Place an authorized local copy under data/raw/ and update this
+# placeholder path before preprocessing.
+patient_workbook: private_patient_dataset.xlsx
+
+final_cohort:
+  source_sheet: baseline_or_pre_treatment_sheet
+  patient_id: patient_id
+  count: null
+
+label:
+  sheet: endpoint_or_followup_sheet
+  column: endpoint_tbr
+  name: endpoint_tbr_y
+
+baseline_tbr_input:
+  sheet: baseline_or_pre_treatment_sheet
+  column: baseline_tbr
+  name: baseline_tbr_b
+
+endpoint_window_as_input: false
+leakage_blacklist:
+- endpoint_tbr
+- followup_tbr
+- label
+- target
+
+split:
+  unit: patient_id
+  seed: 20260605
+  stratify_by: endpoint_window

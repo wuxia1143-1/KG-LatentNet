@@ -1,0 +1,161 @@
+stage: kg_latentnet_v2_after_validation_only_tuning
+model_name: kg_latentnet_v2
+model_script: src/models/kg_latentnet_v2.py
+training_script: src/training/train_kg_latentnet_v2.py
+dataset_path: data/processed/dataset.pkl
+split_path_template: data/splits/fold_{fold}.json
+preprocessing_path_template: data/processed/fold_{fold}_preprocess.pkl
+patient_id_field: patient_SN
+baseline_input: baseline_tbr_b
+endpoint_label: endpoint_tbr_y
+endpoint_tbr_y_in_input: false
+endpoint_time_in_input: false
+endpoint_window_in_main_input: false
+test_set_used_for_selection: false
+selected_by_validation_mae: true
+folds:
+  '0':
+    model_variant: v2_summary_only_residual
+    readout_head: shared
+    loss: Huber
+    huber_delta: 0.05
+    hidden_dim: 16
+    latent_dim: 16
+    summary_dim: 16
+    dropout: 0.1
+    learning_rate: 0.001
+    weight_decay: 0.001
+    lambda_delta: 0.0
+    lambda_anchor: 0.001
+    lambda_prior: 0.001
+    lambda_smooth: 0.001
+    lambda_disentangle: 0.001
+    gradient_clip: 1.0
+    early_stopping_patience: 50
+    best_val_mae: 0.2623799653614269
+    best_val_rmse: 0.49314221916758194
+    best_val_r2: -0.18807182442529946
+    best_epoch: 54
+    train_mae_at_best: 0.013252353442734793
+    gate_mean_latent: 0.27391956391788663
+    gate_mean_summary: 0.45165920683315824
+    gate_mean_treatment: 0.2744212136382148
+    n_params: 10199
+    seed: 20260606
+    selected_by_validation_mae: true
+  '1':
+    model_variant: v2_shared_head
+    readout_head: shared
+    loss: MAE
+    huber_delta: 0.05
+    hidden_dim: 8
+    latent_dim: 4
+    summary_dim: 32
+    dropout: 0.1
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    lambda_delta: 1.0
+    lambda_anchor: 0.005
+    lambda_prior: 0.005
+    lambda_smooth: 0.0
+    lambda_disentangle: 0.005
+    gradient_clip: 5.0
+    early_stopping_patience: 30
+    best_val_mae: 0.3068526176845326
+    best_val_rmse: 0.4713130404206971
+    best_val_r2: 0.08406948664927605
+    best_epoch: 96
+    train_mae_at_best: 0.42586605015553924
+    gate_mean_latent: 0.05065196235276138
+    gate_mean_summary: 0.33586278061072034
+    gate_mean_treatment: 0.6134852528572082
+    n_params: 9098
+    seed: 20260606
+    selected_by_validation_mae: true
+  '2':
+    model_variant: v2_strong_anchor
+    readout_head: shared
+    loss: Huber
+    huber_delta: 0.1
+    hidden_dim: 16
+    latent_dim: 32
+    summary_dim: 32
+    dropout: 0.3
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    lambda_delta: 0.0
+    lambda_anchor: 0.01
+    lambda_prior: 0.001
+    lambda_smooth: 0.001
+    lambda_disentangle: 0.005
+    gradient_clip: 5.0
+    early_stopping_patience: 50
+    best_val_mae: 0.22445493235307581
+    best_val_rmse: 0.4002776933922206
+    best_val_r2: 0.2137840761181462
+    best_epoch: 41
+    train_mae_at_best: 0.0404875570614087
+    gate_mean_latent: 0.8883769412835439
+    gate_mean_summary: 0.038637248895409156
+    gate_mean_treatment: 0.07298580533501485
+    n_params: 15159
+    seed: 20260606
+    selected_by_validation_mae: true
+  '3':
+    model_variant: v2_strong_anchor
+    readout_head: shared
+    loss: MAE
+    huber_delta: 0.05
+    hidden_dim: 32
+    latent_dim: 32
+    summary_dim: 64
+    dropout: 0.5
+    learning_rate: 0.001
+    weight_decay: 0.001
+    lambda_delta: 1.0
+    lambda_anchor: 0.05
+    lambda_prior: 0.005
+    lambda_smooth: 0.0
+    lambda_disentangle: 0.0
+    gradient_clip: 5.0
+    early_stopping_patience: 30
+    best_val_mae: 0.281885844819686
+    best_val_rmse: 0.43655670988244405
+    best_val_r2: 0.05561951841603141
+    best_epoch: 14
+    train_mae_at_best: 0.7266047314593667
+    gate_mean_latent: 0.04477497147904201
+    gate_mean_summary: 0.21607267585667697
+    gate_mean_treatment: 0.7391523745926943
+    n_params: 41287
+    seed: 20260606
+    selected_by_validation_mae: true
+  '4':
+    model_variant: v2_strong_anchor
+    readout_head: shared
+    loss: Huber
+    huber_delta: 0.1
+    hidden_dim: 32
+    latent_dim: 32
+    summary_dim: 64
+    dropout: 0.3
+    learning_rate: 0.0001
+    weight_decay: 1.0e-05
+    lambda_delta: 0.1
+    lambda_anchor: 0.001
+    lambda_prior: 0.001
+    lambda_smooth: 0.0
+    lambda_disentangle: 0.005
+    gradient_clip: 1.0
+    early_stopping_patience: 30
+    best_val_mae: 0.23844360954621258
+    best_val_rmse: 0.3186729026082072
+    best_val_r2: -0.7073314431907922
+    best_epoch: 106
+    train_mae_at_best: 0.052194042033270785
+    gate_mean_latent: 0.17570664042579956
+    gate_mean_summary: 0.15191878648339838
+    gate_mean_treatment: 0.6723745784897736
+    n_params: 41287
+    seed: 20260606
+    selected_by_validation_mae: true

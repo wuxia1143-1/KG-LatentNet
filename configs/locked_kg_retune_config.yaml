@@ -1,0 +1,146 @@
+stage: kg_retune_v2_after_validation_only_tuning
+model_name: kg_latentnet_residual_v2
+model_script: src/models/kg_latentnet_residual_v2.py
+training_script: src/training/train_kg_latentnet_residual_v2.py
+dataset_path: data/processed/dataset.pkl
+split_path_template: data/splits/fold_{fold}.json
+preprocessing_path_template: data/processed/fold_{fold}_preprocess.pkl
+patient_id_field: patient_SN
+baseline_input: baseline_tbr_b
+endpoint_label: endpoint_tbr_y
+endpoint_tbr_y_in_input: false
+endpoint_time_in_input: false
+endpoint_window_in_main_input: false
+test_set_used_for_selection: false
+selected_by_validation_mae: true
+folds:
+  '0':
+    variant_mode: residual_anchor_v1
+    target_mode: residual_anchor
+    loss: MAE
+    huber_delta: 0.1
+    hidden_dim: 32
+    latent_dim: 32
+    dropout: 0.1
+    learning_rate: 0.001
+    weight_decay: 0.001
+    lambda_anchor: 0.01
+    lambda_residual: 0.05
+    lambda_smooth: 0.001
+    lambda_graph_prior: 0.005
+    lambda_disentangle: 0.005
+    gradient_clip: 5.0
+    early_stopping_patience: 50
+    correction_scale: 0.3
+    lambda_correction_magnitude: 0.0
+    best_val_mae: 0.27997339473051186
+    best_val_rmse: 0.5324741845864122
+    best_val_r2: -0.3851456436646754
+    best_epoch: 17
+    n_params: 14241
+    seed: 20260606
+    selected_by_validation_mae: true
+  '1':
+    variant_mode: residual_anchor_strong
+    target_mode: residual_anchor
+    loss: Huber
+    huber_delta: 0.1
+    hidden_dim: 8
+    latent_dim: 8
+    dropout: 0.3
+    learning_rate: 0.0005
+    weight_decay: 0.0001
+    lambda_anchor: 0.005
+    lambda_residual: 0.005
+    lambda_smooth: 0.001
+    lambda_graph_prior: 0.0
+    lambda_disentangle: 0.001
+    gradient_clip: 1.0
+    early_stopping_patience: 50
+    correction_scale: 0.5
+    lambda_correction_magnitude: 0.0
+    best_val_mae: 0.3310605392736547
+    best_val_rmse: 0.47987560323599765
+    best_val_r2: 0.05048690786911192
+    best_epoch: 62
+    n_params: 1686
+    seed: 20260606
+    selected_by_validation_mae: true
+  '2':
+    variant_mode: residual_anchor_v1
+    target_mode: residual_anchor
+    loss: MAE
+    huber_delta: 0.1
+    hidden_dim: 32
+    latent_dim: 32
+    dropout: 0.1
+    learning_rate: 0.001
+    weight_decay: 0.001
+    lambda_anchor: 0.01
+    lambda_residual: 0.05
+    lambda_smooth: 0.001
+    lambda_graph_prior: 0.005
+    lambda_disentangle: 0.005
+    gradient_clip: 5.0
+    early_stopping_patience: 50
+    correction_scale: 0.3
+    lambda_correction_magnitude: 0.0
+    best_val_mae: 0.26618631096447215
+    best_val_rmse: 0.4991522680189584
+    best_val_r2: -0.22260215306762032
+    best_epoch: 57
+    n_params: 14241
+    seed: 20260606
+    selected_by_validation_mae: true
+  '3':
+    variant_mode: residual_anchor_v1
+    target_mode: residual_anchor
+    loss: MAE
+    huber_delta: 0.1
+    hidden_dim: 32
+    latent_dim: 32
+    dropout: 0.1
+    learning_rate: 0.001
+    weight_decay: 0.001
+    lambda_anchor: 0.01
+    lambda_residual: 0.05
+    lambda_smooth: 0.001
+    lambda_graph_prior: 0.005
+    lambda_disentangle: 0.005
+    gradient_clip: 5.0
+    early_stopping_patience: 50
+    correction_scale: 0.3
+    lambda_correction_magnitude: 0.0
+    best_val_mae: 0.29609743987812714
+    best_val_rmse: 0.4919593521320636
+    best_val_r2: -0.19928971409884544
+    best_epoch: 25
+    n_params: 14241
+    seed: 20260606
+    selected_by_validation_mae: true
+  '4':
+    variant_mode: residual_anchor_strong
+    target_mode: residual_anchor
+    loss: Huber
+    huber_delta: 0.2
+    hidden_dim: 8
+    latent_dim: 8
+    dropout: 0.5
+    learning_rate: 0.0005
+    weight_decay: 0.001
+    lambda_anchor: 0.001
+    lambda_residual: 0.01
+    lambda_smooth: 0.0
+    lambda_graph_prior: 0.005
+    lambda_disentangle: 0.005
+    gradient_clip: 1.0
+    early_stopping_patience: 50
+    correction_scale: 0.5
+    lambda_correction_magnitude: 0.0
+    best_val_mae: 0.20040424080456004
+    best_val_rmse: 0.25106785574356294
+    best_val_r2: -0.05976553933498763
+    best_epoch: 130
+    n_params: 1686
+    seed: 20260606
+    selected_by_validation_mae: true

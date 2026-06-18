@@ -1,0 +1,36 @@
+model_name: kg_latentnet_residual
+description: "Baseline-anchored residual prediction: y_pred = baseline_tbr_b + delta_pred"
+
+target_mode: residual_anchor
+hidden_dim: 32
+latent_dim: 16
+dropout: 0.3
+learning_rate: 5e-4
+weight_decay: 1e-5
+loss: Huber
+lambda_residual: 0.005
+lambda_anchor: 0.005
+lambda_range: 0.01
+gradient_clip: 1.0
+early_stopping_patience: 50
+batch_size: 16
+epochs: 200
+seed: 20260606
+
+target_modes:
+  - endpoint
+  - delta
+  - residual_anchor
+
+search_space:
+  target_mode: [endpoint, delta, residual_anchor]
+  hidden_dim: [16, 32, 64]
+  latent_dim: [8, 16, 32]
+  learning_rate: [1e-4, 5e-4, 1e-3]
+  weight_decay: [1e-5, 1e-4, 1e-3]
+  dropout: [0.1, 0.3, 0.5]
+  lambda_residual: [0, 0.001, 0.005, 0.01]
+  lambda_anchor: [0, 0.001, 0.005, 0.01]
+  gradient_clip: [1.0, 5.0]
+  early_stopping_patience: [30, 50]
+  loss: [MAE, Huber]

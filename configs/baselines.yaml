@@ -1,0 +1,160 @@
+order:
+  - hyperimts
+  - trans
+  - tgnn4i
+  - dhgas
+  - kedgn
+  - graphcare
+
+classical_order:
+  - random_forest
+  - xgboost
+
+smoke_test:
+  fold: 0
+  scope: smoke_test_only
+  full_training: false
+
+classical_ml:
+  config: configs/classical_ml.yaml
+  status: additional_classical_baselines_not_replacements
+  models:
+    random_forest:
+      implementation: sklearn.ensemble.RandomForestRegressor
+      feature_source: data/processed/tabular/fold_{fold}_tabular_{split}.pkl
+      prediction_format: patient_id,endpoint_window,y_true,y_pred,absolute_error
+      endpoint_tbr_y: target_only
+      endpoint_window: metadata_only_not_X
+      endpoint_time: metadata_only_not_X
+    xgboost:
+      implementation: xgboost.XGBRegressor
+      feature_source: data/processed/tabular/fold_{fold}_tabular_{split}.pkl
+      prediction_format: patient_id,endpoint_window,y_true,y_pred,absolute_error
+      endpoint_tbr_y: target_only
+      endpoint_window: metadata_only_not_X
+      endpoint_time: metadata_only_not_X
+
+baselines:
+  hyperimts:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - delta_time
+      - treatment_features
+      - baseline_tbr_b
+    usage_note: "Irregular multivariate time-series adapter with mask-aware, delta-time-decayed recurrent updates."
+    implementation:
+      official_code_found: false
+      public_implementation_found: false
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true
+  trans:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - delta_time
+      - treatment_features
+      - baseline_tbr_b
+    usage_note: "Transformer sequence baseline using longitudinal values, observation masks, treatment covariates, and cumulative delta-time encoding."
+    implementation:
+      official_code_found: false
+      public_implementation_found: true
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true
+  tgnn4i:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - delta_time
+      - treatment_features
+      - baseline_tbr_b
+      - prior_matrix
+    usage_note: "Temporal graph adapter; each time step pools biomarker graph nodes after prior-guided propagation, then applies a GRU over time."
+    implementation:
+      official_code_found: false
+      public_implementation_found: false
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true
+  dhgas:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - delta_time
+      - treatment_features
+      - baseline_tbr_b
+      - prior_matrix
+    usage_note: "Dynamic heterogeneous graph-attention adapter over biomarker, treatment, static, and delta-time node types."
+    implementation:
+      official_code_found: false
+      public_implementation_found: true
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true
+  kedgn:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - delta_time
+      - treatment_features
+      - baseline_tbr_b
+      - prior_matrix
+    usage_note: "Knowledge-enhanced dynamic graph adapter with treatment-gated biomarker propagation through the aligned prior graph."
+    implementation:
+      official_code_found: false
+      public_implementation_found: true
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true
+  graphcare:
+    epochs: 3
+    batch_size: 32
+    eval_batch_size: 64
+    learning_rate: 0.001
+    hidden_dim: 64
+    used_inputs:
+      - static_features
+      - dynamic_features
+      - dynamic_mask
+      - treatment_features
+      - baseline_tbr_b
+      - prior_matrix
+    usage_note: "Personalized patient-graph adapter using static patient context to attend over prior-guided dynamic graph summaries."
+    implementation:
+      official_code_found: false
+      public_implementation_found: true
+      official_code_used: false
+      public_implementation_used: false
+      faithful_reimplementation: true

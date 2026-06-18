@@ -1,0 +1,47 @@
+stage: validation_only_tuning
+selection_metric: val_mae
+test_set_used_for_selection: false
+folds: [0, 1, 2, 3, 4]
+max_epochs:
+  torch_models: 20
+  official_models: 8
+patience:
+  torch_models: 5
+  official_models: 3
+batch_size: 32
+eval_batch_size: 64
+seed: 20260605
+
+model_groups:
+  clinical_statistical:
+    - baseline_tbr_only
+    - clinical_core
+    - clinical_horizon_aware
+    - linear_regression
+    - ridge
+    - elasticnet
+    - linear_mixed_effects
+  classical_ml:
+    - random_forest
+    - xgboost
+  time_series_clinical:
+    - grud
+    - time_aware_lstm
+    - retain
+  official_deep_graph_knowledge:
+    - hyperimts
+    - trans
+    - tgnn4i
+    - dhgas
+    - kedgn
+    - graphcare
+  proposed:
+    - kg_latentnet
+
+notes:
+  - This stage uses train and validation splits only.
+  - Test features and test labels are not loaded for tuning.
+  - The locked config is generated only from validation metrics.
+  - endpoint_tbr_y is target only.
+  - endpoint_time is metadata only and not used as model input.
+  - endpoint_window is not used as model input except the separately flagged horizon-aware clinical baseline.

@@ -1,0 +1,247 @@
+locked_at: '2026-06-05 22:00:15'
+stage: locked_after_validation_only_tuning
+selection_metric: mean_validation_mae_across_available_folds
+test_set_used_for_selection: false
+folds:
+- 0
+- 1
+- 2
+- 3
+- 4
+models:
+  baseline_tbr_only:
+    status: locked
+    candidate_id: 0
+    best_params:
+      candidate: fixed
+    mean_val_mae: 0.24569469900692212
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  clinical_core:
+    status: locked
+    candidate_id: 0
+    best_params:
+      candidate: fixed
+    mean_val_mae: 0.24776799047694484
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  clinical_horizon_aware:
+    status: locked
+    candidate_id: 0
+    best_params:
+      candidate: fixed
+    mean_val_mae: 0.2501952865558878
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: true
+  linear_regression:
+    status: locked
+    candidate_id: 0
+    best_params:
+      candidate: fixed
+    mean_val_mae: 1.0040853829944836
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  ridge:
+    status: locked
+    candidate_id: 0
+    best_params:
+      alpha: 0.1
+    mean_val_mae: 0.47958348148009355
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  elasticnet:
+    status: locked
+    candidate_id: 8
+    best_params:
+      alpha: 0.1
+      l1_ratio: 0.8
+    mean_val_mae: 0.3452751208754147
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  linear_mixed_effects:
+    status: failed
+    best_params: null
+  random_forest:
+    status: locked
+    candidate_id: 5
+    best_params:
+      max_depth: 5
+      max_features: 0.5
+      min_samples_leaf: 1
+      n_estimators: 100
+    mean_val_mae: 0.24295133845497413
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  xgboost:
+    status: locked
+    candidate_id: 12
+    best_params:
+      colsample_bytree: 0.9
+      learning_rate: 0.05
+      max_depth: 3
+      n_estimators: 100
+      reg_alpha: 0.0
+      reg_lambda: 1.0
+      subsample: 0.9
+    mean_val_mae: 0.23850349818958955
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  grud:
+    status: locked
+    candidate_id: 1
+    best_params:
+      hidden_dim: 64
+      learning_rate: 0.001
+    mean_val_mae: 1.200789938253515
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  time_aware_lstm:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 4.829764340554967
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  retain:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 0.9199489546391895
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  hyperimts:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 30.781227900350796
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  trans:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 0.27434653534608733
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  tgnn4i:
+    status: failed
+    best_params: null
+  dhgas:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 0.2433889115557951
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  kedgn:
+    status: failed
+    best_params: null
+  graphcare:
+    status: locked
+    candidate_id: 0
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.001
+    mean_val_mae: 0.33884699975743016
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false
+  kg_latentnet:
+    status: locked
+    candidate_id: 2
+    best_params:
+      hidden_dim: 32
+      learning_rate: 0.0003
+      weight_decay: 0.0
+    mean_val_mae: 0.8019746695371234
+    folds_completed:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    horizon_aware_clinical_baseline: false

@@ -1,0 +1,63 @@
+main_paper_models:
+  - raw_names: ["kg_latentnet_residual", "kg_latentnet", "KG-LatentNet-Residual", "KG-LatentNet"]
+    display_name: "KG-LatentNet"
+    category: "Proposed"
+  - raw_names: ["hyperimts", "HyperIMTS"]
+    display_name: "HyperIMTS"
+    category: "Irregular time-series baseline"
+  - raw_names: ["trans", "TRANS"]
+    display_name: "TRANS"
+    category: "Transformer baseline"
+  - raw_names: ["dhgas", "DHGAS"]
+    display_name: "DHGAS"
+    category: "Dynamic heterogeneous graph baseline"
+  - raw_names: ["graphcare", "GraphCare"]
+    display_name: "GraphCare"
+    category: "Knowledge-enhanced healthcare baseline"
+  - raw_names: ["kedgn", "KEDGN"]
+    display_name: "KEDGN"
+    category: "Knowledge-enhanced dynamic graph baseline"
+  - raw_names: ["tgnn4i", "TGNN4I", "TGN4I"]
+    display_name: "TGNN4I"
+    category: "Dynamic graph baseline"
+  - raw_names: ["grud", "GRUD", "GRU-D", "GRU-D baseline"]
+    display_name: "GRU-D"
+    category: "Temporal neural baseline"
+  - raw_names: ["random_forest", "RandomForest", "Random Forest", "RF"]
+    display_name: "Random Forest (RF)"
+    category: "Classical ML baseline"
+  - raw_names: ["xgboost", "XGBoost", "XGB"]
+    display_name: "XGBoost (XGB)"
+    category: "Classical ML baseline"
+
+display_order:
+  - "KG-LatentNet"
+  - "HyperIMTS"
+  - "TRANS"
+  - "DHGAS"
+  - "GraphCare"
+  - "KEDGN"
+  - "TGNN4I"
+  - "GRU-D"
+  - "Random Forest (RF)"
+  - "XGBoost (XGB)"
+
+excluded_from_main_table:
+  - model: "baseline_tbr_only"
+    reason: "Clinical sanity check; not a deep learning or ML comparison model"
+  - model: "clinical_core"
+    reason: "Clinical baseline for feature ablation, not main comparison"
+  - model: "clinical_horizon_aware"
+    reason: "Clinical baseline for feature ablation, not main comparison"
+  - model: "linear_regression"
+    reason: "Simple linear baseline, not main comparison"
+  - model: "ridge"
+    reason: "Simple linear baseline, not main comparison"
+  - model: "elasticnet"
+    reason: "Simple linear baseline, not main comparison"
+  - model: "linear_mixed_effects"
+    reason: "Simple linear baseline, not main comparison"
+  - model: "time_aware_lstm"
+    reason: "Exploratory RNN baseline with known numerical instability"
+  - model: "retain"
+    reason: "Exploratory RNN baseline with known numerical instability"

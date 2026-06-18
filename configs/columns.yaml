@@ -1,0 +1,64 @@
+# Example column mapping for a local authorized dataset.
+#
+# The study dataset and its data dictionary are not included in this public
+# repository. Edit these placeholders to match your own de-identified workbook
+# before running preprocessing.
+
+patient:
+  id: patient_id
+  baseline_sheet: baseline_or_pre_treatment_sheet
+  endpoint_sheet: endpoint_or_followup_sheet
+
+labels:
+  baseline_tbr: baseline_tbr
+  endpoint_tbr: endpoint_tbr
+  endpoint_window: endpoint_window
+
+static_features:
+- age
+- sex
+- bmi
+- cancer_stage
+
+dynamic_features:
+- crp
+- il6
+- d_dimer
+- bnp
+- ldl_c
+- hdl_c
+- total_cholesterol
+- triglycerides
+
+treatment_features:
+- chemotherapy
+- radiotherapy
+- immunotherapy
+- targeted_therapy
+
+endpoint_windows:
+  6:
+    lower_inclusive: 3
+    upper_inclusive: 9
+    center: 6
+  12:
+    lower_exclusive: 9
+    upper_inclusive: 15
+    center: 12
+  18:
+    lower_exclusive: 15
+    upper_inclusive: 21
+    center: 18
+  24:
+    lower_exclusive: 21
+    upper_inclusive: 27
+    center: 24
+
+knowledge_prior:
+  path: data/processed/knowledge_prior.pkl
+  treatment_biomarker_prior_shape:
+  - 10
+  - 32
+  biomarker_biomarker_prior_shape:
+  - 32
+  - 32

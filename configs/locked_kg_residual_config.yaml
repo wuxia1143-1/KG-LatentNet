@@ -1,0 +1,124 @@
+stage: kg_residual_locked_after_validation_only_tuning
+model_name: kg_latentnet_residual
+dataset_path: data/processed/dataset.pkl
+split_path_template: data/splits/fold_{fold}.json
+preprocessing_path_template: data/processed/fold_{fold}_preprocess.pkl
+patient_id_field: patient_SN
+baseline_input: baseline_tbr_b
+endpoint_label: endpoint_tbr_y
+endpoint_tbr_y_in_input: false
+endpoint_time_in_input: false
+endpoint_window_in_main_input: false
+test_set_used_for_selection: false
+selected_by_validation_mae: true
+folds:
+  '0':
+    selected_candidate_id: 56
+    target_mode: residual_anchor
+    loss: Huber
+    hidden_dim: 16
+    latent_dim: 32
+    learning_rate: 0.001
+    weight_decay: 1.0e-05
+    dropout: 0.1
+    lambda_graph_prior: 0.0
+    lambda_smooth: 0.0
+    lambda_disentangle: 0.005
+    lambda_residual: 0.001
+    lambda_anchor: 0.01
+    gradient_clip: 5.0
+    early_stopping_patience: 30
+    best_validation_mae: 0.2136927983340095
+    best_validation_rmse: 0.41252567724754186
+    best_validation_r2: 0.16861861146354773
+    best_epoch: 47
+    seed: 20260606
+    selected_by_validation_mae: true
+  '1':
+    selected_candidate_id: 57
+    target_mode: residual_anchor
+    loss: Huber
+    hidden_dim: 16
+    latent_dim: 16
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    dropout: 0.1
+    lambda_graph_prior: 0.005
+    lambda_smooth: 0.005
+    lambda_disentangle: 0.005
+    lambda_residual: 0.01
+    lambda_anchor: 0.01
+    gradient_clip: 1.0
+    early_stopping_patience: 30
+    best_validation_mae: 0.29686970219892617
+    best_validation_rmse: 0.48175074289689535
+    best_validation_r2: 0.043051863095369014
+    best_epoch: 40
+    seed: 20260606
+    selected_by_validation_mae: true
+  '2':
+    selected_candidate_id: 31
+    target_mode: endpoint
+    loss: MAE
+    hidden_dim: 16
+    latent_dim: 8
+    learning_rate: 0.0005
+    weight_decay: 1.0e-05
+    dropout: 0.3
+    lambda_graph_prior: 0.005
+    lambda_smooth: 0.005
+    lambda_disentangle: 0.005
+    lambda_residual: 0.0
+    lambda_anchor: 0.01
+    gradient_clip: 5.0
+    early_stopping_patience: 30
+    best_validation_mae: 0.22169079500086167
+    best_validation_rmse: 0.4281171052805292
+    best_validation_r2: 0.10061794240521105
+    best_epoch: 30
+    seed: 20260606
+    selected_by_validation_mae: true
+  '3':
+    selected_candidate_id: 53
+    target_mode: endpoint
+    loss: MAE
+    hidden_dim: 32
+    latent_dim: 32
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    dropout: 0.3
+    lambda_graph_prior: 0.005
+    lambda_smooth: 0.0
+    lambda_disentangle: 0.005
+    lambda_residual: 0.01
+    lambda_anchor: 0.001
+    gradient_clip: 1.0
+    early_stopping_patience: 30
+    best_validation_mae: 0.2548526174881879
+    best_validation_rmse: 0.43043074078572047
+    best_validation_r2: 0.08193754249690122
+    best_epoch: 26
+    seed: 20260606
+    selected_by_validation_mae: true
+  '4':
+    selected_candidate_id: 2
+    target_mode: endpoint
+    loss: MAE
+    hidden_dim: 16
+    latent_dim: 16
+    learning_rate: 0.001
+    weight_decay: 0.0001
+    dropout: 0.1
+    lambda_graph_prior: 0.005
+    lambda_smooth: 0.005
+    lambda_disentangle: 0.0
+    lambda_residual: 0.0
+    lambda_anchor: 0.001
+    gradient_clip: 1.0
+    early_stopping_patience: 30
+    best_validation_mae: 0.21069942853030035
+    best_validation_rmse: 0.24748306728236122
+    best_validation_r2: -0.02971857344115958
+    best_epoch: 48
+    seed: 20260606
+    selected_by_validation_mae: true

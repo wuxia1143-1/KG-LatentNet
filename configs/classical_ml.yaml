@@ -1,0 +1,84 @@
+scope: classical_ml_baselines
+dataset:
+  cohort_size: 417
+  split_source: data/splits/fold_{fold}.json
+  processed_source: data/processed/dataset.pkl
+  endpoint_label: endpoint_tbr_y
+  baseline_tbr_allowed: baseline_tbr_b
+  endpoint_window_as_feature: false
+  endpoint_time_as_feature: false
+  keep_no_dynamic_history_patients: true
+
+tabular_features:
+  static_features: true
+  baseline_tbr_b: true
+  treatment_exposure_features: true
+  dynamic_summaries:
+    - last
+    - mean
+    - std
+    - min
+    - max
+    - first
+    - change
+    - slope
+    - missing_rate
+    - observed_count
+    - gap_last_obs_to_assessment_month
+  history_length_features:
+    - num_history_records
+    - has_dynamic_history
+    - min_observation_month_before_assessment
+    - max_observation_month_before_assessment
+    - gap_last_obs_to_assessment_month
+  missingness_features: true
+  train_only_imputer: median
+  scaler_used: false
+
+leakage_blacklist:
+  - endpoint_tbr_y
+  - 胸主动脉TBR值
+  - 胸主动脉TBR
+  - TBR值
+  - endpoint
+  - label
+  - 目标
+  - 随访TBR
+  - endpoint_window
+  - endpoint_time
+
+smoke_test:
+  fold: 0
+  random_forest:
+    n_estimators: 20
+    max_depth: 3
+    min_samples_split: 2
+    min_samples_leaf: 1
+    max_features: sqrt
+  xgboost:
+    n_estimators: 20
+    max_depth: 2
+    learning_rate: 0.05
+    subsample: 0.9
+    colsample_bytree: 0.9
+    reg_lambda: 1.0
+    reg_alpha: 0.0
+
+full_training:
+  folds: [0, 1, 2, 3, 4]
+  selection_metric: val_mae
+  test_used_for_tuning: false
+  random_forest:
+    n_estimators: [100, 300, 500]
+    max_depth: [3, 5, 8, null]
+    min_samples_split: [2, 5, 10]
+    min_samples_leaf: [1, 3, 5]
+    max_features: [sqrt, 0.5, 1.0]
+  xgboost:
+    n_estimators: [100, 300, 500]
+    max_depth: [2, 3, 5]
+    learning_rate: [0.01, 0.03, 0.05, 0.1]
+    subsample: [0.7, 0.9, 1.0]
+    colsample_bytree: [0.7, 0.9, 1.0]
+    reg_lambda: [1.0, 3.0, 5.0]
+    reg_alpha: [0.0, 0.1, 1.0]

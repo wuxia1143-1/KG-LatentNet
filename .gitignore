@@ -1,0 +1,61 @@
+# Private data and derived patient-level artifacts
+data/
+results/
+baseline_results/
+full_5fold/
+logs/
+checkpoints/
+predictions/
+tables/
+figures/
+reports/
+
+# Model and array artifacts
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+# Raw or derived tabular outputs
+*.xls
+*.xlsx
+*.xlsm
+*.csv
+*.tsv
+
+# Archives and large external code drops
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+remote_baselines/
+remote/
+
+# Python/cache/build artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Virtual environments and local machine files
+.venv/
+venv/
+env/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# Editor/project metadata
+.idea/
+.vscode/
