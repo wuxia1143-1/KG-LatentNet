@@ -140,6 +140,7 @@ def figure_population(df: pd.DataFrame) -> None:
     axes[1].set_title("(b) Latent state categories")
     axes[1].set_xlabel("Follow-up window")
     axes[1].set_ylabel("Patient proportion")
+    axes[1].set_xticks(WINDOWS, [str(w) for w in WINDOWS])
     axes[1].set_ylim(0, 1)
     axes[1].legend(loc="lower left", fontsize=9)
 
