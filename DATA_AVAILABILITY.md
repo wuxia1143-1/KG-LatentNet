@@ -15,3 +15,7 @@ This repository contains source code only. It excludes:
 Researchers who have appropriate institutional approval and data-use permission
 can place their own de-identified dataset under `data/raw/` and adapt
 `configs/data.yaml` and `configs/columns.yaml` to their local schema.
+
+Optional patient-specific endpoint-month corrections should be stored only in
+`configs/local_endpoint_month_overrides.csv`. This file is ignored by Git
+because it contains private cohort identifiers.

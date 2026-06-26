@@ -1,14 +1,15 @@
 # Private data and derived patient-level artifacts
-data/
-results/
-baseline_results/
-full_5fold/
-logs/
-checkpoints/
-predictions/
-tables/
-figures/
-reports/
+/data/
+/results/
+/baseline_results/
+/full_5fold/
+/logs/
+/checkpoints/
+/predictions/
+/tables/
+/figures/
+/reports/
+configs/local_endpoint_month_overrides.csv
 
 # Model and array artifacts
 *.pkl

@@ -20,6 +20,12 @@ under `data/raw/` and update:
 - `configs/data.yaml`
 - `configs/columns.yaml`
 
+By default, the Excel loader looks for generic private-local filenames under
+`data/raw/`: `patient_workbook.xlsx`, `medical_prior_knowledge.xlsx`, and
+`medical_prior_knowledge_expert.xlsx`. Alternatively, keep your local filenames
+and set `KG_LATENTNET_PATIENT_WORKBOOK`, `KG_LATENTNET_KNOWLEDGE_WORKBOOK`, and
+`KG_LATENTNET_EXPERT_KNOWLEDGE_WORKBOOK` before running preprocessing.
+
 The current public config files are examples/placeholders and must be adapted
 to the local data dictionary before preprocessing.
 
@@ -77,6 +83,48 @@ python scripts/supplement_best_model_missingness.py
 
 The paper-ready scripts read model outputs from local `results/` directories.
 Those outputs are not tracked in git.
+
+## 444-Patient Stratified Five-Fold Workflow
+
+For the current patient-level protocol, endpoint follow-up windows are assigned
+from treatment-to-endpoint intervals as follows:
+
+- 6-month window: 3-9 months
+- 12-month window: 10-15 months
+- 18-month window: 16-21 months
+- 24-month window: 22-27 months
+
+If the private cohort requires patient-specific endpoint-month corrections,
+create a local file that is intentionally ignored by Git:
+
+```text
+configs/local_endpoint_month_overrides.csv
+```
+
+Expected columns:
+
+```text
+patient_SN,endpoint_month
+```
+
+Then run:
+
+```bash
+python scripts/01_prepare_data.py
+python scripts/run_444_patient_stratified_full_results.py
+```
+
+The 444-patient paper-ready workflow includes:
+
+- overall endpoint TBR prediction comparison;
+- KG-LatentNet component ablation;
+- RF clinical baseline incremental value analysis;
+- follow-up window and clinical subgroup stability analysis;
+- latent-state clinical association analysis;
+- population-, individual-, and stage-level latent-state visualizations.
+
+The generated tables, figures, predictions, checkpoints, logs, and processed
+fold files remain local and are not tracked.
 
 ## Privacy Guardrails
 
